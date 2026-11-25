@@ -11,7 +11,29 @@ export default function Sidebar() {
     <aside className="portfolio-sidebar">
       {/* Brand block */}
       <div className="brand-block">
-        <div className="brand-logo">☼</div>
+        <div
+          style={{
+            width: 76,
+            height: 76,
+            borderRadius: "50%",
+            border: "3px solid var(--line)",
+            boxShadow: "3px 3px 0 var(--line)",
+            overflow: "hidden",
+            margin: "0 auto 10px",
+            background: "var(--cream)",
+          }}
+        >
+          <img
+            src="/images/foto.jpg"
+            alt="Gabriel Cunha Ramos"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+        </div>
         <h2 className="brand-name">Gabriel Cunha Ramos</h2>
         <p className="brand-sub">Desenvolvedor Front-end</p>
       </div>

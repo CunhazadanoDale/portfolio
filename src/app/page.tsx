@@ -17,16 +17,65 @@ export default function HomePage() {
         <div className="dashboard-left">
           {/* Destaque / Hero */}
           <Panel>
-            <h2
+            {/* Foto de perfil + Nome e Cargo */}
+            <div
               style={{
-                fontFamily: "Georgia, serif",
-                fontSize: 26,
-                marginTop: 0,
-                marginBottom: 10,
+                display: "flex",
+                alignItems: "center",
+                gap: 18,
+                marginBottom: 16,
+                flexWrap: "wrap",
               }}
             >
-              Gabriel Cunha Ramos
-            </h2>
+              <div
+                style={{
+                  width: 92,
+                  height: 92,
+                  borderRadius: "50%",
+                  border: "3px solid var(--line)",
+                  boxShadow: "3px 3px 0 var(--line)",
+                  overflow: "hidden",
+                  flexShrink: 0,
+                  background: "var(--cream)",
+                }}
+              >
+                <img
+                  src="/images/foto.jpg"
+                  alt="Gabriel Cunha Ramos"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                />
+              </div>
+
+              <div>
+                <h2
+                  style={{
+                    fontFamily: "Georgia, serif",
+                    fontSize: 26,
+                    margin: 0,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  Gabriel Cunha Ramos
+                </h2>
+                <div
+                  style={{
+                    fontSize: 15,
+                    fontStyle: "italic",
+                    color: "var(--teal2)",
+                    fontWeight: 700,
+                    marginTop: 4,
+                  }}
+                >
+                  Desenvolvedor Front-end
+                </div>
+              </div>
+            </div>
+
             <p
               style={{
                 fontSize: 16,
