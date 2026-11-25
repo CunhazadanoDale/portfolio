@@ -100,7 +100,8 @@ export const GITHUB_FEATURED_PROJECTS: Project[] = [
 export const NAV_ITEMS = [
   { label: "Início", icon: "⌂", href: "/" },
   { label: "Projetos", icon: "▰", href: "/projects" },
-  { label: "Sobre", icon: "✎", href: "/about" },
+  { label: "Notas", icon: "✎", href: "/notes" },
+  { label: "Sobre", icon: "☺", href: "/about" },
   { label: "Contato", icon: "✉", href: "/contact" },
 ];
 
