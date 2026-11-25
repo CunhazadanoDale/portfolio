@@ -14,6 +14,20 @@
   --shadow: 4px 4px 0 var(--line);
 }
 
+[data-theme="dark"] {
+  --cream: #2a2e29;
+  --paper: #212420;
+  --ink: #f4e8d5;
+  --teal: #2f5d5a;
+  --teal2: #204240;
+  --orange: #e07742;
+  --gold: #e5b358;
+  --muted: #535c50;
+  --line: #131612;
+  --bg: #1a1d19;
+  --shadow: 4px 4px 0 #0e100d;
+}
+
 * {
   box-sizing: border-box;
 }

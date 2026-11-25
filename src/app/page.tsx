@@ -3,6 +3,8 @@ import WelcomeHeader from "@/components/home/WelcomeHeader";
 import ProjectsPreview from "@/components/home/ProjectsPreview";
 import Calendar from "@/components/widgets/Calendar";
 import Panel from "@/components/ui/Panel";
+import CvDownloadButton from "@/components/ui/CvDownloadButton";
+import CopyEmailButton from "@/components/ui/CopyEmailButton";
 
 export default function HomePage() {
   return (
@@ -82,48 +84,58 @@ export default function HomePage() {
                 lineHeight: 1.6,
                 fontWeight: "normal",
                 maxWidth: 620,
-                margin: "0 0 16px 0",
+                margin: "0 0 18px 0",
               }}
             >
               Desenvolvedor front-end focado em criar interfaces elegantes, funcionais
-              e interativas. Aqui você encontra meus projetos, experimentos e tecnologias com que trabalho.
+              e interativas com React e Next.js. Aqui você encontra meus projetos práticos, experimentos técnicos e código aberto.
             </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+
+            {/* Ações Rápidas: CV, E-mail, GitHub, Sobre */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
+              <CvDownloadButton variant="stamp" label="Baixar CV" />
+              <CopyEmailButton label="Copiar E-mail" />
               <a
                 href="https://github.com/CunhazadanoDale"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  display: "inline-block",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
                   background: "var(--ink)",
                   color: "var(--cream)",
                   border: "2px solid var(--line)",
                   borderRadius: 5,
-                  padding: "8px 16px",
+                  padding: "8px 14px",
                   boxShadow: "2px 2px 0 var(--line)",
                   fontSize: 14,
                   textDecoration: "none",
                   fontWeight: 700,
                 }}
               >
-                GitHub →
+                GitHub ↗
               </a>
               <a
-                href="/about"
+                href="https://www.linkedin.com/in/gabriel-cunha-ramos/"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
-                  display: "inline-block",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
                   background: "var(--teal)",
                   color: "white",
                   border: "2px solid var(--line)",
                   borderRadius: 5,
-                  padding: "8px 16px",
+                  padding: "8px 14px",
                   boxShadow: "2px 2px 0 var(--line)",
                   fontSize: 14,
                   textDecoration: "none",
                   fontWeight: 700,
                 }}
               >
-                Sobre mim
+                LinkedIn ↗
               </a>
             </div>
           </Panel>
@@ -136,7 +148,7 @@ export default function HomePage() {
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {[
                 "HTML5", "CSS3", "JavaScript", "TypeScript", "React",
-                "Next.js", "Tailwind CSS", "Git", "GitHub",
+                "Next.js", "Tailwind CSS", "Go", "Java", "Git", "GitHub",
               ].map((tech) => (
                 <span
                   key={tech}
@@ -185,13 +197,18 @@ export default function HomePage() {
             <p
               style={{ fontStyle: "italic", fontSize: 15, fontWeight: "normal", margin: "0 0 6px 0" }}
             >
-              🟢 Disponível para projetos
+              🟢 Disponível para projetos & freelas
             </p>
             <p
               style={{ fontSize: 13, fontWeight: "normal", opacity: 0.9, lineHeight: 1.4 }}
             >
-              Construindo projetos dinâmicos com Next.js. Aberto a colaborações e oportunidades front-end.
+              Desenvolvendo aplicações com Next.js e TypeScript. Aberto a posições front-end e parcerias.
             </p>
+
+            <div style={{ marginTop: 14 }}>
+              <CopyEmailButton label="Entrar em contato" />
+            </div>
+
             <div
               style={{
                 height: 36,
