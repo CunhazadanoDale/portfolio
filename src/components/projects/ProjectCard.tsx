@@ -1,121 +1,213 @@
 import Panel from "@/components/ui/Panel";
-import PanelHead from "@/components/ui/PanelHead";
-import ProgressBar from "@/components/ui/ProgressBar";
 import Tag from "@/components/ui/Tag";
 import { Project } from "@/lib/types";
-import Link from "next/link";
 
 interface ProjectCardProps {
   project: Project;
-  compact?: boolean;
 }
 
-const colorDot: Record<string, string> = {
-  teal: "var(--teal)",
-  orange: "var(--orange)",
-  gold: "var(--gold)",
-};
+export default function ProjectCard({ project }: ProjectCardProps) {
+  const starsCount = project.stars ?? 0;
 
-export default function ProjectCard({
-  project,
-  compact = false,
-}: ProjectCardProps) {
-  if (compact) {
-    // Versão compacta para o dashboard com layout responsivo
-    return (
-      <div className="project-compact-row">
-        <span
-          style={{
-            width: 14,
-            height: 14,
-            borderRadius: "50%",
-            background: colorDot[project.color],
-            display: "inline-block",
-          }}
-        />
-        <span style={{ fontSize: 16, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-          {project.name}
-        </span>
-        <ProgressBar value={project.progress} color={project.color} height={12} />
-        <span style={{ textAlign: "right", fontSize: 14, opacity: 0.9 }}>
-          {project.progress}%
-        </span>
-      </div>
-    );
-  }
-
-  // Versão completa para a página de projetos
   return (
     <Panel
       style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 12,
-        boxShadow: "4px 4px 0 var(--line)",
+        padding: 0,
+        overflow: "hidden",
+        boxShadow: "5px 5px 0 var(--line)",
+        transition: "transform 0.15s ease, box-shadow 0.15s ease",
       }}
     >
-      <PanelHead
-        title={project.name}
-        action={
-          <span
+      <div className="project-card-layout">
+        {/* Lado Esquerdo: Espaço para Foto ou Vídeo */}
+        <div className="project-media-col">
+          {project.video ? (
+            <video
+              src={project.video}
+              controls
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+          ) : project.image ? (
+            <img
+              src={project.image}
+              alt={`Preview do projeto ${project.name}`}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+          ) : (
+            /* Placeholder com visual retrô de moldura técnica / papelaria */
+            <div className="project-media-placeholder">
+              <div style={{ fontSize: 36, lineHeight: 1, opacity: 0.85 }}>☼</div>
+              <div
+                style={{
+                  fontFamily: "Georgia, serif",
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  color: "var(--teal2)",
+                  marginTop: 6,
+                  textAlign: "center",
+                }}
+              >
+                {project.language || "Projeto"}
+              </div>
+              <span
+                style={{
+                  fontSize: 11,
+                  fontStyle: "italic",
+                  opacity: 0.7,
+                  marginTop: 4,
+                  textAlign: "center",
+                }}
+              >
+                [ Espaço para Foto ou Vídeo ]
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Lado Direito: Informações do Projeto */}
+        <div className="project-content-col">
+          {/* Cabeçalho do Card: Nome + Estrelas */}
+          <div
             style={{
-              width: 14,
-              height: 14,
-              borderRadius: "50%",
-              background: colorDot[project.color],
-              display: "inline-block",
-            }}
-          />
-        }
-      />
-      <p
-        style={{
-          margin: 0,
-          fontSize: 15,
-          fontWeight: "normal",
-          color: "#5a5247",
-          lineHeight: 1.5,
-        }}
-      >
-        {project.description}
-      </p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-        {project.tags.map((tag) => (
-          <Tag key={tag} label={tag} variant={project.color} />
-        ))}
-      </div>
-      <ProgressBar value={project.progress} color={project.color} />
-      <div style={{ display: "flex", gap: 12, marginTop: 4 }}>
-        {project.github && (
-          <Link
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontSize: 13,
-              color: "var(--teal2)",
-              textDecoration: "underline",
-              fontWeight: 700,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              gap: 12,
+              flexWrap: "wrap",
             }}
           >
-            GitHub →
-          </Link>
-        )}
-        {project.url && (
-          <Link
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
+            <h3
+              style={{
+                fontFamily: "Georgia, serif",
+                fontSize: 22,
+                margin: 0,
+                color: "var(--ink)",
+                lineHeight: 1.2,
+                wordBreak: "break-word",
+              }}
+            >
+              {project.name}
+            </h3>
+
+            {/* Badge de Estrelas GitHub */}
+            {starsCount > 0 && (
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 4,
+                  background: "var(--gold)",
+                  color: "var(--ink)",
+                  padding: "4px 10px",
+                  borderRadius: 20,
+                  fontSize: 13,
+                  fontWeight: 700,
+                  border: "2px solid var(--line)",
+                  boxShadow: "2px 2px 0 var(--line)",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                ★ {starsCount} {starsCount === 1 ? "estrela" : "estrelas"}
+              </span>
+            )}
+          </div>
+
+          {/* Descrição */}
+          <p
             style={{
-              fontSize: 13,
-              color: "var(--orange)",
-              textDecoration: "underline",
-              fontWeight: 700,
+              margin: "10px 0 14px",
+              fontSize: 15,
+              fontWeight: "normal",
+              color: "#474035",
+              lineHeight: 1.6,
+              flex: 1,
             }}
           >
-            Demo →
-          </Link>
-        )}
+            {project.description}
+          </p>
+
+          {/* Linguagens e Tecnologias */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
+            {project.language && (
+              <Tag label={project.language} variant="teal" />
+            )}
+            {project.tags
+              ?.filter((t) => t !== project.language)
+              .map((tag) => (
+                <Tag key={tag} label={tag} variant="gold" />
+              ))}
+          </div>
+
+          {/* Links e Ações */}
+          <div
+            style={{
+              display: "flex",
+              gap: 12,
+              alignItems: "center",
+              flexWrap: "wrap",
+              borderTop: "1px dashed var(--muted)",
+              paddingTop: 12,
+            }}
+          >
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  background: "var(--ink)",
+                  color: "var(--cream)",
+                  border: "2px solid var(--line)",
+                  borderRadius: 4,
+                  padding: "7px 14px",
+                  fontSize: 13,
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  boxShadow: "2px 2px 0 var(--line)",
+                }}
+              >
+                GitHub ↗
+              </a>
+            )}
+
+            {project.url && (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  background: "var(--orange)",
+                  color: "white",
+                  border: "2px solid var(--line)",
+                  borderRadius: 4,
+                  padding: "7px 14px",
+                  fontSize: 13,
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  boxShadow: "2px 2px 0 var(--line)",
+                }}
+              >
+                Demonstração ↗
+              </a>
+            )}
+          </div>
+        </div>
       </div>
     </Panel>
   );

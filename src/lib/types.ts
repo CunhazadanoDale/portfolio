@@ -8,9 +8,11 @@ export interface Project {
   url?: string;
   github?: string;
   image?: string;
-  color: "teal" | "orange" | "gold";
-  status: "in-progress" | "done" | "archived";
-  progress: number; // 0–100
+  video?: string;
+  stars?: number;
+  forks?: number;
+  language?: string;
+  color?: "teal" | "orange" | "gold";
 }
 
 export interface NavItem {

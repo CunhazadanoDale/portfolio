@@ -1,61 +1,107 @@
-import { Project, NavItem } from "./types";
+import { Project } from "./types";
 
-export const NAV_ITEMS: NavItem[] = [
+/**
+ * Dados reais dos repositórios do Gabriel Cunha Ramos (@CunhazadanoDale).
+ * Servem tanto como lista direta quanto como fallback de alta disponibilidade
+ * caso a API do GitHub atinja o limite de requisições por IP sem token.
+ */
+export const GITHUB_FEATURED_PROJECTS: Project[] = [
+  {
+    id: "1",
+    name: "projetoBlocCondoApp",
+    description: "Projeto idealizado para atender condomínios por todo o Brasil com arquitetura moderna, gestão de blocos, unidades e administração.",
+    tags: ["Java", "Spring Boot", "REST API", "PostgreSQL"],
+    github: "https://github.com/CunhazadanoDale/projetoBlocCondoApp",
+    language: "Java",
+    stars: 2,
+    forks: 0,
+    color: "teal",
+  },
+  {
+    id: "2",
+    name: "cbpitu-backend",
+    description: "Desenvolvimento de uma aplicação REST focada em Java com modelo arquitetural MVC para gerenciamento e comunicação de grupos.",
+    tags: ["Java", "MVC", "REST API", "Backend"],
+    github: "https://github.com/CunhazadanoDale/cbpitu-backend",
+    language: "Java",
+    stars: 1,
+    forks: 0,
+    color: "gold",
+  },
+  {
+    id: "3",
+    name: "ComunicacaoInternaAthena",
+    description: "Sistema para comunicações internas dentro de corporações ou instituições. Foco em mensagens, avisos e integração entre membros.",
+    tags: ["Java", "Spring", "Comunicação Interna"],
+    github: "https://github.com/CunhazadanoDale/ComunicacaoInternaAthena",
+    language: "Java",
+    stars: 1,
+    forks: 0,
+    color: "teal",
+  },
+  {
+    id: "4",
+    name: "ecommerceProjectIndiano",
+    description: "Plataforma completa de loja virtual desenvolvendo o conceito integrado de FRONT-BACK utilizando ecossistema Spring, React e Docker.",
+    tags: ["Java", "Spring Boot", "React", "Docker", "Full Stack"],
+    github: "https://github.com/CunhazadanoDale/ecommerceProjectIndiano",
+    language: "Java",
+    stars: 1,
+    forks: 0,
+    color: "orange",
+  },
+  {
+    id: "5",
+    name: "rocketZada",
+    description: "Jogo desenvolvido com Unity utilizando C#. Experimentação com mecânicas de física, movimentação de foguete e lógica de jogos 2D/3D.",
+    tags: ["C#", "Unity", "Game Dev", "Física 2D/3D"],
+    github: "https://github.com/CunhazadanoDale/rocketZada",
+    language: "C#",
+    stars: 1,
+    forks: 0,
+    color: "orange",
+  },
+  {
+    id: "6",
+    name: "gotextforge",
+    description: "IDE desenvolvida em Go (Golang) feita com conceitos nativos da linguagem. Executa localmente no terminal e no desktop.",
+    tags: ["Go", "Golang", "CLI", "IDE", "Desktop"],
+    github: "https://github.com/CunhazadanoDale/gotextforge",
+    language: "Go",
+    stars: 0,
+    forks: 0,
+    color: "teal",
+  },
+  {
+    id: "7",
+    name: "TaskFlowAPI",
+    description: "API de alta performance desenvolvida em Go para gerenciamento de tarefas e produtividade.",
+    tags: ["Go", "Golang", "REST API", "Clean Arch"],
+    github: "https://github.com/CunhazadanoDale/TaskFlowAPI",
+    language: "Go",
+    stars: 0,
+    forks: 0,
+    color: "gold",
+  },
+  {
+    id: "8",
+    name: "projetoEdmilson",
+    description: "Landing page personalizada desenvolvida para serviço de consultoria financeira, com layout responsivo e alta conversão.",
+    tags: ["TypeScript", "React", "Next.js", "Vercel"],
+    github: "https://github.com/CunhazadanoDale/projetoEdmilson",
+    url: "https://projeto-edmilson.vercel.app",
+    language: "TypeScript",
+    stars: 0,
+    forks: 0,
+    color: "orange",
+  },
+];
+
+export const NAV_ITEMS = [
   { label: "Início", icon: "⌂", href: "/" },
   { label: "Projetos", icon: "▰", href: "/projects" },
   { label: "Sobre", icon: "✎", href: "/about" },
   { label: "Contato", icon: "✉", href: "/contact" },
 ];
 
-export const PROJECTS: Project[] = [
-  {
-    id: "1",
-    name: "Portfolio Papelaria Retro",
-    description: "Portfolio pessoal com design system retrô, arquitetura modular de componentes, Next.js 15 e layout responsivo adaptável.",
-    tags: ["Next.js", "TypeScript", "CSS Modules", "Tailwind"],
-    github: "https://github.com/CunhazadanoDale/portfolio",
-    color: "teal",
-    status: "in-progress",
-    progress: 85,
-  },
-  {
-    id: "2",
-    name: "Estudo de Go & Microserviços",
-    description: "Laboratório prático de desenvolvimento backend com Go (Golang), explorando goroutines, canais e APIs REST de alta performance.",
-    tags: ["Go", "Docker", "REST API"],
-    github: "https://github.com/CunhazadanoDale",
-    color: "teal",
-    status: "in-progress",
-    progress: 75,
-  },
-  {
-    id: "3",
-    name: "Forkarsenet Core",
-    description: "Sistema e utilitários de interface web focados em usabilidade e performance front-end com arquitetura reativa.",
-    tags: ["React", "JavaScript", "UI Design"],
-    github: "https://github.com/CunhazadanoDale",
-    color: "orange",
-    status: "in-progress",
-    progress: 50,
-  },
-  {
-    id: "4",
-    name: "Leitura Técnica Semanal",
-    description: "Resumos, anotações de arquitetura de software, padrões de design de código limpo e engenharia de software.",
-    tags: ["Estudos", "Arquitetura", "Docs"],
-    github: "https://github.com/CunhazadanoDale",
-    color: "gold",
-    status: "in-progress",
-    progress: 40,
-  },
-  {
-    id: "5",
-    name: "Component Library Retro",
-    description: "Biblioteca de componentes de interface inspirada em papelaria e design analógico clássico.",
-    tags: ["Design System", "CSS", "Acessibilidade"],
-    github: "https://github.com/CunhazadanoDale",
-    color: "orange",
-    status: "done",
-    progress: 100,
-  },
-];
+export const PROJECTS: Project[] = GITHUB_FEATURED_PROJECTS;
