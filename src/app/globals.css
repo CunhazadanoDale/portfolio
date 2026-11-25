@@ -26,6 +26,7 @@ body {
   color: var(--ink);
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
+  overflow-x: hidden;
 }
 
 button,
@@ -45,4 +46,330 @@ input:focus-visible,
 textarea:focus-visible {
   outline: 3px solid var(--orange);
   outline-offset: 2px;
+}
+
+/* === Layout Responsivo Baseado no Estilo Papelaria === */
+
+.portfolio-window {
+  max-width: 1460px;
+  margin: 18px auto;
+  background: var(--cream);
+  border: 4px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 7px 7px 0 #8f8064;
+  min-height: calc(100vh - 36px);
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-topbar {
+  height: 56px;
+  background: var(--teal2);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  border-bottom: 3px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.portfolio-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  flex: 1;
+  min-height: 0;
+}
+
+.portfolio-sidebar {
+  background: var(--teal);
+  color: var(--cream);
+  border-right: 3px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.brand-block {
+  padding: 28px 16px 22px;
+  text-align: center;
+  border-bottom: 2px solid #264d4a;
+}
+
+.brand-logo {
+  font-size: 64px;
+  line-height: 1;
+}
+
+.brand-name {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  margin: 8px 0 0;
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+.brand-sub {
+  font-size: 13px;
+  margin: 6px 0 0;
+  opacity: 0.85;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.sidebar-nav {
+  padding: 10px 0;
+  flex: 1;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 20px;
+  border-bottom: 1px solid #467875;
+  color: inherit;
+  font-size: 17px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar-link:hover {
+  background: #477b77;
+}
+
+.sidebar-link.active {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.sidebar-stripe {
+  height: 60px;
+  border-top: 8px solid var(--orange);
+  border-bottom: 8px solid var(--gold);
+  background: var(--teal2);
+  margin-top: auto;
+}
+
+.portfolio-main {
+  padding: 28px;
+  min-width: 0;
+}
+
+/* === Dashboard Columns & Responsiveness === */
+.dashboard-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 22px;
+}
+
+.dashboard-left {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+}
+
+.dashboard-right {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+}
+
+/* Welcome Header */
+.welcome-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.welcome-heading {
+  font-family: Georgia, serif;
+  font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+  margin: 0;
+  line-height: 1.05;
+}
+
+.welcome-date {
+  font-size: 15px;
+  margin-top: 8px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.9;
+}
+
+.welcome-quote {
+  border-left: 3px solid var(--line);
+  padding: 10px 18px;
+  font: italic bold 18px Georgia, serif;
+  max-width: 340px;
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* Compact project row in dashboard */
+.project-compact-row {
+  display: grid;
+  grid-template-columns: 16px minmax(110px, 1.4fr) minmax(80px, 1fr) 48px;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
+  font-size: 16px;
+}
+
+/* About grid */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 22px;
+}
+
+/* Footer */
+.portfolio-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-top: 3px solid var(--line);
+  font: italic bold 19px Georgia, serif;
+}
+
+/* === Media Queries para Telas Médias / Notebooks (1366px / 1280px / 1024px) === */
+
+@media (max-width: 1400px) {
+  .portfolio-window {
+    margin: 12px;
+    max-width: calc(100vw - 24px);
+  }
+}
+
+@media (max-width: 1280px) {
+  /* Resoluções tipo 1366x768 com 100% ou 125% escala */
+  .portfolio-layout {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+  .portfolio-main {
+    padding: 20px;
+  }
+  .dashboard-columns {
+    grid-template-columns: minmax(0, 1fr) 310px;
+    gap: 18px;
+  }
+  .brand-name {
+    font-size: 21px;
+  }
+  .sidebar-link {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1100px) {
+  /* Telas de notebook de 1366 com zoom/escala 125% (~1093px viewport) */
+  .dashboard-columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .dashboard-right {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  /* Tablets */
+  .portfolio-layout {
+    grid-template-columns: 175px minmax(0, 1fr);
+  }
+  .portfolio-main {
+    padding: 16px;
+  }
+  .brand-logo {
+    font-size: 48px;
+  }
+  .brand-name {
+    font-size: 18px;
+  }
+  .welcome-quote {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  /* Celulares / Telas pequenas */
+  .portfolio-window {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    min-height: 100vh;
+    box-shadow: none;
+  }
+  .portfolio-topbar {
+    height: 48px;
+    padding: 0 12px;
+  }
+  .portfolio-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .portfolio-sidebar {
+    border-right: none;
+    border-bottom: 3px solid var(--line);
+    min-height: auto;
+  }
+  .brand-block {
+    display: none;
+  }
+  .sidebar-stripe {
+    display: none;
+  }
+  .sidebar-nav {
+    display: flex;
+    padding: 0;
+    overflow-x: auto;
+  }
+  .sidebar-link {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 8px;
+    font-size: 14px;
+    border-bottom: none;
+    border-right: 1px solid #467875;
+    white-space: nowrap;
+  }
+  .sidebar-link:last-child {
+    border-right: none;
+  }
+  .portfolio-main {
+    padding: 14px;
+  }
+  .dashboard-right {
+    grid-template-columns: 1fr;
+  }
+  .project-compact-row {
+    grid-template-columns: 14px 1fr 70px 40px;
+    font-size: 14px;
+    gap: 8px;
+  }
+  .portfolio-footer {
+    font-size: 15px;
+    padding: 12px;
+  }
+  .portfolio-footer .bar-decoration {
+    display: none;
+  }
 }

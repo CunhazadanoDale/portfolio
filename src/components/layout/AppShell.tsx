@@ -3,43 +3,15 @@ import Sidebar from "@/components/layout/Sidebar";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      style={{
-        maxWidth: 1500,
-        margin: "20px auto",
-        background: "var(--cream)",
-        border: "4px solid var(--line)",
-        borderRadius: 12,
-        overflow: "hidden",
-        boxShadow: "7px 7px 0 #8f8064",
-        minHeight: "calc(100vh - 40px)",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <div className="portfolio-window">
       <Topbar />
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "245px minmax(0, 1fr)",
-          flex: 1,
-        }}
-      >
+      <div className="portfolio-layout">
         <Sidebar />
-        <main style={{ padding: 30, minWidth: 0 }}>{children}</main>
+        <main className="portfolio-main">{children}</main>
       </div>
-      <footer
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 20,
-          padding: "15px 22px",
-          borderTop: "3px solid var(--line)",
-          font: "italic bold 20px Georgia, serif",
-        }}
-      >
+      <footer className="portfolio-footer">
         <BarDecoration />
-        <span>Faça com calma, mas faça.</span>
+        <span style={{ textAlign: "center" }}>Faça com calma, mas faça.</span>
         <BarDecoration />
       </footer>
     </div>
@@ -49,19 +21,20 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 function BarDecoration() {
   return (
     <div
+      className="bar-decoration"
       style={{
-        height: 34,
+        height: 28,
         flex: 1,
         display: "flex",
         flexDirection: "column",
-        gap: 5,
+        gap: 4,
       }}
     >
       {["var(--orange)", "var(--gold)", "var(--teal)"].map((color, i) => (
         <i
           key={i}
           style={{
-            height: 8,
+            height: 6,
             borderRadius: 2,
             background: color,
             display: "block",

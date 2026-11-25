@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Panel from "@/components/ui/Panel";
-import PanelHead from "@/components/ui/PanelHead";
 import Button from "@/components/ui/Button";
 
 const MONTHS = [
@@ -13,9 +12,18 @@ const MONTHS = [
 const WEEKDAYS = ["D", "S", "T", "Q", "Q", "S", "S"];
 
 export default function Calendar() {
-  const [year, setYear] = useState(() => new Date().getFullYear());
-  const [month, setMonth] = useState(() => new Date().getMonth());
-  const [selected, setSelected] = useState(() => new Date().getDate());
+  // Safe fixed initial state for SSR / static generation
+  const [year, setYear] = useState(2026);
+  const [month, setMonth] = useState(10);
+  const [selected, setSelected] = useState(19);
+
+  // Sync to actual client date upon hydration
+  useEffect(() => {
+    const now = new Date();
+    setYear(now.getFullYear());
+    setMonth(now.getMonth());
+    setSelected(now.getDate());
+  }, []);
 
   const { firstDay, daysInMonth } = useMemo(() => {
     return {
@@ -25,14 +33,22 @@ export default function Calendar() {
   }, [year, month]);
 
   const prevMonth = () => {
-    if (month === 0) { setMonth(11); setYear((y) => y - 1); }
-    else setMonth((m) => m - 1);
+    if (month === 0) {
+      setMonth(11);
+      setYear((y) => y - 1);
+    } else {
+      setMonth((m) => m - 1);
+    }
     setSelected(1);
   };
 
   const nextMonth = () => {
-    if (month === 11) { setMonth(0); setYear((y) => y + 1); }
-    else setMonth((m) => m + 1);
+    if (month === 11) {
+      setMonth(0);
+      setYear((y) => y + 1);
+    } else {
+      setMonth((m) => m + 1);
+    }
     setSelected(1);
   };
 
@@ -44,18 +60,18 @@ export default function Calendar() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "15px 18px",
+          padding: "12px 16px",
           background: "var(--teal)",
           color: "var(--cream)",
           fontFamily: "Georgia, serif",
-          fontSize: 20,
+          fontSize: 18,
         }}
       >
-        <Button variant="ghost" onClick={prevMonth} style={{ color: "var(--cream)", fontSize: 24 }}>
+        <Button variant="ghost" onClick={prevMonth} style={{ color: "var(--cream)", fontSize: 22, padding: "2px 8px" }}>
           ‹
         </Button>
         <span>{MONTHS[month]} {year}</span>
-        <Button variant="ghost" onClick={nextMonth} style={{ color: "var(--cream)", fontSize: 24 }}>
+        <Button variant="ghost" onClick={nextMonth} style={{ color: "var(--cream)", fontSize: 22, padding: "2px 8px" }}>
           ›
         </Button>
       </div>
@@ -65,8 +81,8 @@ export default function Calendar() {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(7, 1fr)",
-          gap: 4,
-          padding: 14,
+          gap: 2,
+          padding: 12,
         }}
       >
         {WEEKDAYS.map((d, i) => (
@@ -75,9 +91,9 @@ export default function Calendar() {
             style={{
               display: "grid",
               placeItems: "center",
-              minHeight: 36,
+              minHeight: 32,
               fontWeight: "bold",
-              fontSize: 13,
+              fontSize: 12,
             }}
           >
             {d}
@@ -85,7 +101,7 @@ export default function Calendar() {
         ))}
         {/* Empty cells */}
         {Array.from({ length: firstDay }).map((_, i) => (
-          <span key={`e-${i}`} style={{ minHeight: 36 }} />
+          <span key={`e-${i}`} style={{ minHeight: 32 }} />
         ))}
         {/* Days */}
         {Array.from({ length: daysInMonth }).map((_, i) => {
@@ -98,13 +114,13 @@ export default function Calendar() {
               style={{
                 display: "grid",
                 placeItems: "center",
-                minHeight: 36,
+                minHeight: 32,
                 borderRadius: "50%",
                 cursor: "pointer",
                 fontWeight: isSelected ? "bold" : "normal",
                 background: isSelected ? "var(--orange)" : "transparent",
                 color: isSelected ? "white" : "inherit",
-                fontSize: 14,
+                fontSize: 13,
               }}
             >
               {day}

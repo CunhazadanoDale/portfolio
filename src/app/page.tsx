@@ -12,39 +12,34 @@ export default function HomePage() {
         quote="Grandes conquistas começam com um bom código."
       />
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1fr) 355px",
-          gap: 24,
-        }}
-      >
+      <div className="dashboard-columns">
         {/* Coluna esquerda */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <div className="dashboard-left">
           {/* Destaque / Hero */}
           <Panel>
             <h2
               style={{
                 fontFamily: "Georgia, serif",
-                fontSize: 28,
+                fontSize: 26,
                 marginTop: 0,
+                marginBottom: 10,
               }}
             >
-              Desenvolvedor Front-end
+              Gabriel Cunha Ramos
             </h2>
             <p
               style={{
-                fontSize: 17,
+                fontSize: 16,
                 lineHeight: 1.6,
                 fontWeight: "normal",
-                maxWidth: 540,
+                maxWidth: 620,
+                margin: "0 0 16px 0",
               }}
             >
-              Apaixonado por interfaces bonitas e experiências que fazem
-              sentido. Aqui você encontra meus projetos, aprendizados e um
-              pouco da minha forma de pensar código.
+              Desenvolvedor front-end focado em criar interfaces elegantes, funcionais
+              e interativas. Aqui você encontra meus projetos, experimentos e tecnologias com que trabalho.
             </p>
-            <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
               <a
                 href="https://github.com/CunhazadanoDale"
                 target="_blank"
@@ -55,9 +50,9 @@ export default function HomePage() {
                   color: "var(--cream)",
                   border: "2px solid var(--line)",
                   borderRadius: 5,
-                  padding: "9px 18px",
+                  padding: "8px 16px",
                   boxShadow: "2px 2px 0 var(--line)",
-                  fontSize: 15,
+                  fontSize: 14,
                   textDecoration: "none",
                   fontWeight: 700,
                 }}
@@ -72,9 +67,9 @@ export default function HomePage() {
                   color: "white",
                   border: "2px solid var(--line)",
                   borderRadius: 5,
-                  padding: "9px 18px",
+                  padding: "8px 16px",
                   boxShadow: "2px 2px 0 var(--line)",
-                  fontSize: 15,
+                  fontSize: 14,
                   textDecoration: "none",
                   fontWeight: 700,
                 }}
@@ -86,19 +81,21 @@ export default function HomePage() {
 
           {/* Stack de tecnologias */}
           <Panel>
-            <h2 style={{ fontSize: 22, marginTop: 0 }}>Stack & Ferramentas</h2>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+            <h2 style={{ fontSize: 20, marginTop: 0, marginBottom: 12 }}>
+              Stack & Ferramentas
+            </h2>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {[
-                "HTML", "CSS", "JavaScript", "TypeScript", "React",
-                "Next.js", "Git", "GitHub",
+                "HTML5", "CSS3", "JavaScript", "TypeScript", "React",
+                "Next.js", "Tailwind CSS", "Git", "GitHub",
               ].map((tech) => (
                 <span
                   key={tech}
                   style={{
-                    padding: "7px 14px",
+                    padding: "6px 12px",
                     border: "2px solid var(--line)",
                     borderRadius: 5,
-                    fontSize: 14,
+                    fontSize: 13,
                     background: "var(--cream)",
                     boxShadow: "2px 2px 0 var(--line)",
                   }}
@@ -114,7 +111,7 @@ export default function HomePage() {
         </div>
 
         {/* Coluna direita */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <div className="dashboard-right">
           <Calendar />
 
           {/* Status card */}
@@ -122,37 +119,37 @@ export default function HomePage() {
             style={{
               background: "var(--teal)",
               color: "var(--cream)",
+              position: "relative",
+              overflow: "hidden",
             }}
           >
             <h2
               style={{
                 fontFamily: "Georgia, serif",
-                fontSize: 22,
+                fontSize: 20,
                 marginTop: 0,
+                marginBottom: 8,
               }}
             >
               Status atual
             </h2>
             <p
-              style={{ fontStyle: "italic", fontSize: 16, fontWeight: "normal" }}
+              style={{ fontStyle: "italic", fontSize: 15, fontWeight: "normal", margin: "0 0 6px 0" }}
             >
-              🟢 Disponível para oportunidades
+              🟢 Disponível para projetos
             </p>
             <p
-              style={{ fontSize: 14, fontWeight: "normal", opacity: 0.85 }}
+              style={{ fontSize: 13, fontWeight: "normal", opacity: 0.9, lineHeight: 1.4 }}
             >
-              Estudando e construindo. Aberto a freelas e posições front-end.
+              Construindo projetos dinâmicos com Next.js. Aberto a colaborações e oportunidades front-end.
             </p>
             <div
               style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: 44,
+                height: 36,
+                marginTop: 14,
                 opacity: 0.25,
                 background:
-                  "repeating-linear-gradient(90deg,#1e3938 0 18px,transparent 18px 26px)",
+                  "repeating-linear-gradient(90deg,#1e3938 0 16px,transparent 16px 24px)",
                 clipPath:
                   "polygon(0 65%,10% 65%,10% 30%,16% 30%,16% 80%,26% 80%,26% 20%,32% 20%,32% 55%,42% 55%,42% 10%,49% 10%,49% 85%,60% 85%,60% 40%,70% 40%,70% 70%,82% 70%,82% 20%,90% 20%,90% 55%,100% 55%,100% 100%,0 100%)",
               }}

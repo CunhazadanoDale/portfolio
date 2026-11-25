@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  cacheComponents: true,
-  partialPrefetching: true,
+  // Configurações Next.js 15/16
+  reactStrictMode: true,
 };
 
 export default nextConfig;

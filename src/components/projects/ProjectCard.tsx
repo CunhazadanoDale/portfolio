@@ -21,29 +21,23 @@ export default function ProjectCard({
   compact = false,
 }: ProjectCardProps) {
   if (compact) {
-    // Versão compacta para o dashboard
+    // Versão compacta para o dashboard com layout responsivo
     return (
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "18px 1fr 1fr 52px",
-          alignItems: "center",
-          gap: 14,
-          margin: "16px 0",
-        }}
-      >
+      <div className="project-compact-row">
         <span
           style={{
-            width: 16,
-            height: 16,
+            width: 14,
+            height: 14,
             borderRadius: "50%",
             background: colorDot[project.color],
             display: "inline-block",
           }}
         />
-        <span style={{ fontSize: 17 }}>{project.name}</span>
-        <ProgressBar value={project.progress} color={project.color} />
-        <span style={{ textAlign: "right", fontSize: 15 }}>
+        <span style={{ fontSize: 16, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+          {project.name}
+        </span>
+        <ProgressBar value={project.progress} color={project.color} height={12} />
+        <span style={{ textAlign: "right", fontSize: 14, opacity: 0.9 }}>
           {project.progress}%
         </span>
       </div>
@@ -80,6 +74,7 @@ export default function ProjectCard({
           fontSize: 15,
           fontWeight: "normal",
           color: "#5a5247",
+          lineHeight: 1.5,
         }}
       >
         {project.description}
@@ -90,7 +85,7 @@ export default function ProjectCard({
         ))}
       </div>
       <ProgressBar value={project.progress} color={project.color} />
-      <div style={{ display: "flex", gap: 10, marginTop: 4 }}>
+      <div style={{ display: "flex", gap: 12, marginTop: 4 }}>
         {project.github && (
           <Link
             href={project.github}
@@ -100,6 +95,7 @@ export default function ProjectCard({
               fontSize: 13,
               color: "var(--teal2)",
               textDecoration: "underline",
+              fontWeight: 700,
             }}
           >
             GitHub →
@@ -114,6 +110,7 @@ export default function ProjectCard({
               fontSize: 13,
               color: "var(--orange)",
               textDecoration: "underline",
+              fontWeight: 700,
             }}
           >
             Demo →

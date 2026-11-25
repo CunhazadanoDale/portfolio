@@ -7,41 +7,35 @@ export default function AboutPage() {
   return (
     <AppShell>
       <WelcomeHeader title="Sobre mim" />
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1fr) 300px",
-          gap: 24,
-        }}
-      >
+      <div className="about-grid">
         {/* Bio */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 20, minWidth: 0 }}>
           <Panel>
-            <h2 style={{ fontFamily: "Georgia, serif", marginTop: 0 }}>
-              Olá! Sou o Brad.
+            <h2 style={{ fontFamily: "Georgia, serif", marginTop: 0, fontSize: 24 }}>
+              Olá! Sou o Gabriel Cunha Ramos.
             </h2>
             <p style={{ lineHeight: 1.7, fontWeight: "normal", fontSize: 16 }}>
-              Desenvolvedor front-end apaixonado por criar interfaces bonitas e
-              funcionais. Gosto de transformar ideias em código limpo e
-              experiências que as pessoas realmente gostam de usar.
+              Desenvolvedor front-end focado em construir aplicações web modernas,
+              interativas e bem arquitetadas. Gosto de unir design visual expressivo
+              com código limpo, componentes modulares e boas práticas.
             </p>
             <p style={{ lineHeight: 1.7, fontWeight: "normal", fontSize: 16 }}>
-              Estou sempre aprendendo e explorando novas tecnologias, com foco
-              especial em React, Next.js e design de UI.
+              Trabalho com ecossistema React e Next.js, explorando TypeScript e
+              estilizações consistentes para entregar experiências fluidas em qualquer dispositivo.
             </p>
           </Panel>
 
           <Panel>
-            <h2 style={{ fontSize: 22, marginTop: 0 }}>Habilidades</h2>
+            <h2 style={{ fontSize: 20, marginTop: 0, marginBottom: 12 }}>Habilidades</h2>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {[
-                { label: "HTML & CSS", variant: "teal" as const },
-                { label: "JavaScript", variant: "gold" as const },
+                { label: "HTML5 & CSS3", variant: "teal" as const },
+                { label: "JavaScript (ES6+)", variant: "gold" as const },
                 { label: "TypeScript", variant: "teal" as const },
-                { label: "React", variant: "orange" as const },
-                { label: "Next.js", variant: "teal" as const },
+                { label: "React & Hooks", variant: "orange" as const },
+                { label: "Next.js (App Router)", variant: "teal" as const },
+                { label: "Design Responsivo", variant: "orange" as const },
                 { label: "Git & GitHub", variant: "gold" as const },
-                { label: "Responsive Design", variant: "orange" as const },
               ].map((skill) => (
                 <Tag
                   key={skill.label}
@@ -54,10 +48,10 @@ export default function AboutPage() {
         </div>
 
         {/* Links / Info */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 20, minWidth: 0 }}>
           <Panel>
-            <h2 style={{ fontSize: 20, marginTop: 0 }}>Encontre-me em</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <h2 style={{ fontSize: 20, marginTop: 0, marginBottom: 12 }}>Conecte-se</h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <a
                 href="https://github.com/CunhazadanoDale"
                 target="_blank"
@@ -71,10 +65,11 @@ export default function AboutPage() {
                   fontSize: 15,
                   padding: "8px 0",
                   borderBottom: "1px solid var(--muted)",
+                  fontWeight: 600,
                 }}
               >
                 <span style={{ fontSize: 20 }}>⌂</span>
-                GitHub
+                GitHub (@CunhazadanoDale)
               </a>
             </div>
           </Panel>

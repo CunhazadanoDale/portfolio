@@ -11,8 +11,8 @@ export default function ProjectsPage() {
         style={{
           fontStyle: "italic",
           fontSize: 16,
-          marginBottom: 24,
-          opacity: 0.75,
+          marginBottom: 20,
+          opacity: 0.8,
           fontWeight: "normal",
         }}
       >
@@ -21,8 +21,8 @@ export default function ProjectsPage() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
-          gap: 24,
+          gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))",
+          gap: 20,
         }}
       >
         {PROJECTS.map((project) => (
