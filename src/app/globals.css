@@ -227,6 +227,11 @@ textarea:focus-visible {
   font-size: 16px;
 }
 
+/* Lista de projetos (página de projetos) */
+.project-list-row {
+  grid-template-columns: 18px minmax(140px, 1.4fr) minmax(100px, 1fr) 56px 28px;
+}
+
 /* About grid */
 .about-grid {
   display: grid;
@@ -362,6 +367,11 @@ textarea:focus-visible {
   }
   .project-compact-row {
     grid-template-columns: 14px 1fr 70px 40px;
+    font-size: 14px;
+    gap: 8px;
+  }
+  .project-list-row {
+    grid-template-columns: 14px minmax(90px, 1fr) minmax(60px, 80px) 38px 18px;
     font-size: 14px;
     gap: 8px;
   }
