@@ -5,6 +5,7 @@ import Calendar from "@/components/widgets/Calendar";
 import Panel from "@/components/ui/Panel";
 import CvDownloadButton from "@/components/ui/CvDownloadButton";
 import CopyEmailButton from "@/components/ui/CopyEmailButton";
+import ActivityHeatmap from "@/components/activity/ActivityHeatmap";
 
 export default function HomePage() {
   return (
@@ -139,6 +140,9 @@ export default function HomePage() {
               </a>
             </div>
           </Panel>
+
+          {/* Atividade Diária & Check-in (Estilo GitHub) */}
+          <ActivityHeatmap />
 
           {/* Stack de tecnologias */}
           <Panel>
