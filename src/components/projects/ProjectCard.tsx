@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Panel from "@/components/ui/Panel";
 import Tag from "@/components/ui/Tag";
 import ProjectMediaModal from "@/components/projects/ProjectMediaModal";
@@ -208,13 +209,33 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <div
               style={{
                 display: "flex",
-                gap: 12,
+                gap: 10,
                 alignItems: "center",
                 flexWrap: "wrap",
                 borderTop: "1px dashed var(--muted)",
                 paddingTop: 12,
               }}
             >
+              <Link
+                href={`/pipeline?project=${encodeURIComponent(project.name)}`}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  background: "var(--teal)",
+                  color: "white",
+                  border: "2px solid var(--line)",
+                  borderRadius: 4,
+                  padding: "7px 12px",
+                  fontSize: 13,
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  boxShadow: "2px 2px 0 var(--line)",
+                }}
+              >
+                Pipeline ▤
+              </Link>
+
               {project.github && (
                 <a
                   href={project.github}

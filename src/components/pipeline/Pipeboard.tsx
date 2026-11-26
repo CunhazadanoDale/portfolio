@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import Panel from "@/components/ui/Panel";
 import Button from "@/components/ui/Button";
-import Tag from "@/components/ui/Tag";
+import Link from "next/link";
 import {
   PipelineItem,
   PipelineStage,
@@ -14,6 +15,9 @@ import {
 const STAGES: PipelineStage[] = ["backlog", "in-progress", "testing", "done"];
 
 export default function Pipeboard() {
+  const searchParams = useSearchParams();
+  const projectParam = searchParams.get("project");
+
   const [items, setItems] = useState<PipelineItem[]>(INITIAL_PIPELINE_ITEMS);
   const [selectedProject, setSelectedProject] = useState<string>("all");
   const [isAdding, setIsAdding] = useState(false);
@@ -21,6 +25,13 @@ export default function Pipeboard() {
   const [newDesc, setNewDesc] = useState("");
   const [newProject, setNewProject] = useState("portfolio");
   const [newStage, setNewStage] = useState<PipelineStage>("in-progress");
+
+  // Se veio parâmetro na URL (?project=nome), inicializa filtrando por ele
+  useEffect(() => {
+    if (projectParam) {
+      setSelectedProject(projectParam);
+    }
+  }, [projectParam]);
 
   // Hidratação com localStorage
   useEffect(() => {
@@ -86,7 +97,7 @@ export default function Pipeboard() {
   // Itens filtrados por projeto
   const filteredItems = useMemo(() => {
     if (selectedProject === "all") return items;
-    return items.filter((i) => i.projectName === selectedProject);
+    return items.filter((i) => i.projectName.toLowerCase() === selectedProject.toLowerCase());
   }, [items, selectedProject]);
 
   return (
@@ -105,7 +116,7 @@ export default function Pipeboard() {
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <h2 style={{ fontFamily: "Georgia, serif", fontSize: 24, margin: 0 }}>
-              Pipeboard de Projetos & Roadmap ▤
+              Quadro de Pipeline & Roadmap ▤
             </h2>
             <span
               style={{
@@ -122,7 +133,7 @@ export default function Pipeboard() {
             </span>
           </div>
           <p style={{ margin: "4px 0 0", fontSize: 14, opacity: 0.85, fontWeight: "normal" }}>
-            Visão viva e transparente do que estou construindo e planejando além dos commits do GitHub.
+            Acompanhe o fluxo de desenvolvimento ativo, ideias e entregas dos meus projetos.
           </p>
         </div>
 
@@ -149,6 +160,23 @@ export default function Pipeboard() {
             ))}
           </select>
 
+          {selectedProject !== "all" && (
+            <button
+              onClick={() => setSelectedProject("all")}
+              style={{
+                background: "var(--cream)",
+                border: "1px solid var(--line)",
+                borderRadius: 4,
+                padding: "5px 8px",
+                fontSize: 12,
+                cursor: "pointer",
+                fontWeight: 600,
+              }}
+            >
+              ✕ Ver todos
+            </button>
+          )}
+
           <Button
             variant="action"
             onClick={() => setIsAdding(!isAdding)}
@@ -158,6 +186,33 @@ export default function Pipeboard() {
           </Button>
         </div>
       </div>
+
+      {/* Aviso quando filtrado por um projeto específico */}
+      {selectedProject !== "all" && (
+        <div
+          style={{
+            background: "#fdf3de",
+            border: "1px solid var(--gold)",
+            borderRadius: 6,
+            padding: "8px 14px",
+            marginBottom: 16,
+            fontSize: 13,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span>
+            Exibindo apenas o pipeline do projeto: <strong>{selectedProject}</strong>
+          </span>
+          <Link
+            href="/projects"
+            style={{ color: "var(--teal2)", fontWeight: 700, textDecoration: "underline" }}
+          >
+            Voltar para Projetos →
+          </Link>
+        </div>
+      )}
 
       {/* Formulário de Nova Tarefa */}
       {isAdding && (
